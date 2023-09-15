@@ -1,18 +1,10 @@
 const { Router } = require("express");
-const axios = require("axios");
-const URLBASE = "http://localhost:5000/countries";
-const getAllCountries = require("../Components/getAllCountries")
+const getAllCountries = require("../Components/getAllCountries");
 const router = Router();
 
-
-
-router.get("/countries", getAllCountries)
-
-
-  router.get(`/countries/:id`, (req, res) => {
-    const id = req.params;
-
-
-  });
+router.get("/countries", getAllCountries.all);
+router.get(`/countries/:id`, getAllCountries.id);
+router.post(`/activities`, getAllCountries.id);
+router.get(`/activities`, getAllCountries.id);
 
 module.exports = router;
