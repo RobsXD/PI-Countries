@@ -3,12 +3,15 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("Activity", {
+  sequelize.define("Activities", {
+    key: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
     id: {
       type: DataTypes.STRING(3),
-      primaryKey: true,
       allowNull: false,
-      unique: true,
       validate: {
         is: /^[A-Z]{3}$/,
       },
@@ -19,11 +22,15 @@ module.exports = (sequelize) => {
     },
     difficulty: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
+      validate: {
+        min: 1,
+        max: 5,
+      },
     },
     duration: {
       type: DataTypes.TIME,
-      allowNull: false,
+      allowNull: true,
     },
     season: {
       type: DataTypes.STRING,
@@ -31,11 +38,3 @@ module.exports = (sequelize) => {
     },
   });
 };
-
-// 📍 MODELO 2 | Activity
-
-// ID. *
-// Nombre. *
-// Dificultad (número del 1 al 5). *
-// Duración (en horas).
-// Temporada (Verano, Otoño, Invierno o Primavera). *
