@@ -34,10 +34,21 @@ getAllCountries.id = async (req, res) => {
   // 2. El país es recibido por parámetro (ID de tres letras del país).
   // 3. Tiene que incluir los datos de las actividades turísticas asociadas a este país.
   const response = await axios.get(`http://localhost:5000/countries`);
-  const countries = response.data;
+  const info = response.data;
   const { id } = req.params;
 
-  const country = countries.find((country) => country.cca3 == id);
+  const filteredInfo = info.map((country) => ({
+    name: country.name.common,
+    capital: country.capital,
+    ID: country.cca3,
+    population: country.population,
+    region: country.region,
+    flag: country.flags.png,
+    area: country.area || "Area no disponible",
+    subregion: country.subregion,
+  }));
+
+  const country = filteredInfo.find((country) => country.ID === id);
 
   if (!country) {
     return res.status(400).json({ error: "Pais no encontrado." });
@@ -74,14 +85,12 @@ getAllCountries.post = async (req, res) => {
 };
 
 getAllCountries.act = async (req, res) => {
-  // Obtiene un arreglo de objetos, donde cada objeto es una actividad turística.
+  const { country } = req.params;
 
   try {
-    const activities = await Activities.findAll();
-
-    if (!activities) {
-      res.status(404).json("no se encontro ninguna actividad");
-    }
+    const activities = country
+      ? await Activities.findAll({ where: { id: country } })
+      : await Activities.findAll();
 
     res.status(200).json(activities);
   } catch (error) {

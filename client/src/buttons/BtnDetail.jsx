@@ -9,4 +9,4 @@ export const BtnDetail = () => {
     );
   };
   
-  export default VolverHome;
+  export default BtnDetail;

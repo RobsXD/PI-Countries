@@ -1,7 +1,8 @@
-import { GET_COUNTRY } from "./Actions";
+import { GET_COUNTRY, GET_ACTIVITIES } from "./Actions";
 
 let initialState = {
   getCountries: [],
+  getActivities: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -10,7 +11,14 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         getCountries: action.payload,
-        vgsCopy: action.payload,
+        countriesCopy: action.payload,
+      };
+
+    case GET_ACTIVITIES:
+      return {
+        ...state,
+        getActivities: action.payload,
+        activitiesCopy: action.payload,
       };
 
     default:

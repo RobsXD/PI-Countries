@@ -1,7 +1,11 @@
-import React from "react";
+import { ActivitiesForm } from "../components/index";
 
 const Form = () => {
-  return <div>Form</div>;
+  return (
+    <div>
+      <ActivitiesForm />
+    </div>
+  );
 };
 
 export default Form;

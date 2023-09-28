@@ -1,7 +1,12 @@
 import React from "react";
+import { DetailComponent } from "../components/index";
 
 const Detail = () => {
-  return <div>Detail</div>;
+  return (
+    <div>
+      <DetailComponent />
+    </div>
+  );
 };
 
 export default Detail;

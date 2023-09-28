@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import React from 'react';
 
-export const VolverHome = () => {
+export const BtnHome = () => {
   const location = useLocation();
 
   let buttonText = "Volver al Home";
@@ -18,4 +18,4 @@ export const VolverHome = () => {
   );
 };
 
-export default VolverHome;
+export default BtnHome;

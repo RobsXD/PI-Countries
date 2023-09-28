@@ -1,5 +1,6 @@
 import React from "react";
-import BtnHome from "../buttons/BtnHome"
+import BtnHome from "../buttons/BtnHome";
+
 const Landing = () => {
   return (
     <div>

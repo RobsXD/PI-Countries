@@ -1,10 +1,11 @@
 import React from "react";
 import Cards from "../components/Cards/Cards";
-
+import { BtnCreateAct, BtnLanding } from "../buttons/Index";
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <BtnLanding/>
+      <BtnCreateAct />
       <Cards />
     </div>
   );
