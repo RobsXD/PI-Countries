@@ -4,24 +4,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BtnHome } from "../../buttons/Index";
 import { getActivities } from "../../redux/Actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Activities } from "../index";
 
 const DetailComponent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  
-  const [selectCountry, setSelectCountry] = useState([]);
 
-  const buscar = () => {
-    axios(`http://localhost:3001/countries/${id}`).then(({ data }) => {
-      if (data.name) {
-        setSelectCountry(data);
-      } else {
-        window.alert("No hay pais con ese nombre");
-      }
-    });
-  };
+  const [selectCountry, setSelectCountry] = useState([]);
 
   useEffect(() => {
     axios(`http://localhost:3001/countries/${id}`)
@@ -34,8 +24,6 @@ const DetailComponent = () => {
         }
       });
   }, [id]);
-
-  
 
   return (
     <div>
@@ -50,7 +38,7 @@ const DetailComponent = () => {
 
       <hr />
       <h2>Actividades para hacer en el pais: </h2>
-      
+
       <hr />
       <BtnHome />
     </div>

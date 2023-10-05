@@ -1,7 +1,7 @@
 import BtnDetail from "./BtnDetail";
 import BtnHome from "./BtnHome";
-import BtnPrevNext from "./BtnPrevNext";
 import BtnCreateAct from "./BtnCreateAct";
 import BtnLanding from "./BtnLanding";
+import BtnMasInfo from "./BtnMasInfo";
 
-export { BtnDetail, BtnHome, BtnPrevNext, BtnCreateAct, BtnLanding };
+export { BtnDetail, BtnHome, BtnCreateAct, BtnLanding, BtnMasInfo };

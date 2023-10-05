@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getCountries } from "../redux/Actions";
+import { getCountries } from "../../redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Pagination = () => {

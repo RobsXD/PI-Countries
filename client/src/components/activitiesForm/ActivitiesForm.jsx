@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { Card } from "../index";
+import Select from "react-select";
+import { getCountries } from "../../redux/Actions";
+import style from "./ActivitiesForm.module.css";
 
 const ActivitiesForm = () => {
   const succes = () => {
     window.alert("La actividad fue creada con exito");
+  };
+  const countries = useSelector((state) => state.getCountries);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
+
+  const handlerSelectedOption = (event) => {
+    const selectedValue = event.value;
+
+    setMakeActivity({ ...makeActivity, id: selectedValue });
   };
 
   const [makeActivity, setMakeActivity] = useState({
@@ -23,18 +38,14 @@ const ActivitiesForm = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost:3001/activities",
         makeActivity
       );
 
-      if (response.status === 201) {
-        succes();
-      } else {
-        window.alert({ error: error.message });
-      }
+      if (response.status === 201) succes();
     } catch (error) {
       window.alert({ error: error.message });
     }
@@ -55,11 +66,14 @@ const ActivitiesForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Pais de la actividad: </label>
-        <input
-          type="text"
+        <Select
+          className={style.select}
+          onChange={handlerSelectedOption}
           name="id"
-          value={makeActivity.id}
-          onChange={handleChange}
+          options={countries.map((country) => ({
+            label: country.name,
+            value: country.ID,
+          }))}
         />
         <hr />
 

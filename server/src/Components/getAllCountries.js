@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Activities } = require("../db");
+const { Activities, Country } = require("../db");
 const getAllCountries = {};
 
 getAllCountries.all = async (req, res) => {
@@ -20,7 +20,7 @@ getAllCountries.all = async (req, res) => {
 
   if (name) {
     const filterCountries = filteredInfo.filter((country) =>
-      country.name.common.toLowerCase().includes(name.toLowerCase())
+      country.name.toLowerCase().includes(name.toLowerCase())
     );
 
     res.status(200).json(filterCountries);
@@ -78,6 +78,13 @@ getAllCountries.post = async (req, res) => {
       duration: body.duration,
       season: body.season,
     });
+    let country = await Country.findAll({
+      where: {
+        id: body.countries[0],
+      },
+    });
+    createCountries.addCountry(country);
+
     res.status(201).json(createCountries);
   } catch (error) {
     res.status(400).json({ error: error.message });

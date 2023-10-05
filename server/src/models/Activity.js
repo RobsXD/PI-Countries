@@ -9,13 +9,6 @@ module.exports = (sequelize) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    id: {
-      type: DataTypes.STRING(3),
-      allowNull: false,
-      validate: {
-        is: /^[A-Z]{3}$/,
-      },
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,5 +29,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   });
 };
